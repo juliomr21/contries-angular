@@ -1,0 +1,31 @@
+<form class="row " style="margin-top: 5%;">
+    <div class="col-lg-4">
+        <input type="search" class="form-control">
+    </div>
+    <span class="col-lg-5">
+
+    </span>
+
+    <div class="col-lg-2" style="margin-left:3% ;">
+        <select name="region" id="region" class="form-select col-lg-6">
+            <option selected="" disabled="" value=""> Filter by Region</option>
+            <option *ngFor="let item of Region" [value]="item">{{item}}</option>
+            
+        </select>
+    </div>
+
+</form>
+<div class="row" style="margin-top: 3%;">
+    <div *ngFor="let contry of DBcontry" class=" col-lg-3 col-md-4 col-sm-6">
+        <div class="card" style="margin-top: 10%; width:80% ">
+            <img src={{contry.flags.png}} height="130px" [routerLink]="['/','post',contry.name.common]"
+                style="cursor: pointer;">
+            <div class="container" style="margin-bottom: 5%;">
+                <h5><strong>{{contry.name.common}}</strong></h5>
+                <strong>Population:</strong> {{contry.population}} <br>
+                <strong>Region:</strong> {{contry.region}} <br>
+                <strong>Capital:</strong> {{contry.capital}} <br>
+            </div>
+        </div>
+    </div>
+</div>
