@@ -1,30 +1,38 @@
-<form class="row " style="margin-top: 5%;">
-    <div class="col-lg-4">
-        <input type="search" class="form-control">
-    </div>
-    <span class="col-lg-5">
 
-    </span>
-
-    <div class="col-lg-2" style="margin-left:3% ;">
-        <select name="region" id="region" class="form-select col-lg-6">
-            <option selected="" disabled="" value=""> Filter by Region</option>
-            <option *ngFor="let item of Region" [value]="item">{{item}}</option>
+<!-- <button (click)="micolor()">ok</button> -->
+<div class="container">
+    <form [formGroup]="form" class="row " style="margin-top: 5%;" >
+        <div class="col-lg-4 col-md-5 col-sm-12">
             
-        </select>
-    </div>
-
-</form>
-<div class="row" style="margin-top: 3%;">
-    <div *ngFor="let contry of DBcontry" class=" col-lg-3 col-md-4 col-sm-6">
-        <div class="card" style="margin-top: 10%; width:80% ">
-            <img src={{contry.flags.png}} height="130px" [routerLink]="['/','post',contry.name.common]"
-                style="cursor: pointer;">
-            <div class="container" style="margin-bottom: 5%;">
-                <h5><strong>{{contry.name.common}}</strong></h5>
-                <strong>Population:</strong> {{contry.population}} <br>
-                <strong>Region:</strong> {{contry.region}} <br>
-                <strong>Capital:</strong> {{contry.capital}} <br>
+            <input  type="search"  class="form-control" width="50%" [ngStyle]="tema" placeholder="Search for a contry..." formControlName="pais" (input)="fun2()">
+            <!-- <button (click)="fun2()">a</button> -->
+         
+        </div>
+        <span class="col-lg-6 col-md-3 col-sm-5">
+    
+        </span>
+    
+        <div class="col-lg-2 col-md-4 col-sm-12 ">
+            <select name="region" id="region" class=" form-select-sm border " [ngStyle]="tema"  (change)="fun()" formControlName="region" 
+                style="border-radius: 1ex; margin-top: 5%; ">
+                <option selected="" disabled="" value="" class="text-disabled"> Filter by Region</option>
+                <option *ngFor="let item of Region" [value]="item">{{item}}</option>
+                
+            </select>
+        </div>
+    
+    </form>
+    <div class="row" style="margin-top: 3%; ">
+        <div *ngFor="let contry of DBcontry" class="container col-lg-3 col-md-4 col-sm-12"  >
+            <div class="card shadow item-center" style="margin-top: 10%;  width: 100%; height: auto;"[ngStyle]="tema">
+                <img loading="lazy" src={{contry.flags.png}} height="135px" width="100%" (click)="micolor()" [routerLink]="['/','post',contry.name.common]"
+                    style="cursor: pointer;">
+                <div class="container" style="margin-bottom: 5%;">
+                    <h5>{{contry.name.common}}</h5>
+                    <h6>Population: {{contry.population}}</h6>  
+                    <h6>Region: {{contry.region}} </h6> 
+                    <h6>Capital: {{contry.capital}}</h6>  
+                </div>
             </div>
         </div>
     </div>

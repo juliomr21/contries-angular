@@ -1,6 +1,16 @@
-
-<div class="container">
-   
-  <router-outlet></router-outlet>
+<div [ngStyle]="fondo" style="height: 100%;">
+  <nav class="navbar navbar-expand-lg text-dark shadow " [ngStyle]="fondo">
+    <div class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:3%">
+      <h3 [ngStyle]="fondo" >Where in the world?</h3>
+    </div>
+    <div class="d-flex">
+      <button class="btn me-2 btnd" [ngStyle]="fondo" (click)="fun()">{{mode}}</button>
+    </div>
+  </nav>
+  <div class="container" >
+    <router-outlet [ngStyle]="tema" ></router-outlet>
+  </div>
+  <div [ngStyle]="fondo" style="height: 120px;">
+    <!-- Challenge by <a>Frontend Mentor</a> . Coded by <a>Julio Cesar Moreno Ramírez.</a>  -->
+  </div>
 </div>
-
