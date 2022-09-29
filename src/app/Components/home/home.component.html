@@ -4,16 +4,17 @@
     <form [formGroup]="form" class="row " style="margin-top: 5%;" >
         <div class="col-lg-4 col-md-5 col-sm-12">
             
-            <input  type="search"  class="form-control" width="50%" [ngStyle]="tema" placeholder="Search for a contry..." formControlName="pais" (input)="fun2()">
-            <!-- <button (click)="fun2()">a</button> -->
-         
+           
+            <input  type="search"  class="form-control" width="50%" [ngStyle]="tema" placeholder="Search for a contry..." formControlName="pais"  (input)="search_by_contry()">
+            <!-- <button (click)="search_by_contry()">a</button> -->
+            
         </div>
         <span class="col-lg-6 col-md-3 col-sm-5">
     
         </span>
     
         <div class="col-lg-2 col-md-4 col-sm-12 ">
-            <select name="region" id="region" class=" form-select-sm border " [ngStyle]="tema"  (change)="fun()" formControlName="region" 
+            <select name="region" id="region" class=" form-select-sm border " [ngStyle]="tema"  (change)="search_by_region()" formControlName="region" 
                 style="border-radius: 1ex; margin-top: 5%; ">
                 <option selected="" disabled="" value="" class="text-disabled"> Filter by Region</option>
                 <option *ngFor="let item of Region" [value]="item">{{item}}</option>
@@ -22,14 +23,19 @@
         </div>
     
     </form>
-    <div class="row" style="margin-top: 3%; ">
-        <div *ngFor="let contry of DBcontry" class="container col-lg-3 col-md-4 col-sm-12"  >
-            <div class="card shadow item-center" style="margin-top: 10%;  width: 100%; height: auto;"[ngStyle]="tema">
-                <img loading="lazy" src={{contry.flags.png}} height="135px" width="100%" (click)="micolor()" [routerLink]="['/','post',contry.name.common]"
+    <div *ngIf="noContry" style="margin-top: 10%;">
+        <h1 [ngStyle]="tema">Opss, this country not exist in this region</h1>
+        <h3 [ngStyle]="tema" class="lead">Change the name of the country or region</h3>
+    </div>
+
+    <div class="row container" style="margin-top: 3%; ">
+        <div *ngFor="let contry of DBcontry" class="container col-lg-3 col-md-4 col-xs-12 "  >
+            <div class="card shadow item-center" style="margin-top: 10%; margin-left: 3%; width: 100%; "[ngStyle]="tema">
+                <img loading="lazy" src={{contry.flag}} height="135px" width="100%" (click)="micolor()" [routerLink]="['/','post',contry.cca3]"
                     style="cursor: pointer;">
-                <div class="container" style="margin-bottom: 5%;">
-                    <h5>{{contry.name.common}}</h5>
-                    <h6>Population: {{contry.population}}</h6>  
+                <div class="container row" style="margin-bottom: 5%;">
+                    <h5 class="col-12">{{contry.name}}</h5>
+                    <h6>Population: {{contry.population}}</h6>
                     <h6>Region: {{contry.region}} </h6> 
                     <h6>Capital: {{contry.capital}}</h6>  
                 </div>

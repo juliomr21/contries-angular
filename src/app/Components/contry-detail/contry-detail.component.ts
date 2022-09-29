@@ -18,7 +18,6 @@ export class ContryDetailComponent implements OnInit {
     servicehttp.cambio.subscribe(res => this.tema = res);
    }
  DBcontry:any = [];
- DBaux:any = []; 
   ngOnInit(): void {
     this.tema=this.servicehttp.get_color();
     this.route.paramMap.subscribe((paramMap: any) => {
@@ -28,14 +27,12 @@ export class ContryDetailComponent implements OnInit {
 
   }
   cargaData(id: string) {
-    var Miurl = `https://restcountries.com/v3.1/name/${id}`;
-    this.servicehttp.get(`https://restcountries.com/v2/name/${id}`).subscribe(res => this.DBaux = res);
-    this.servicehttp.get(Miurl).subscribe(res => {this.DBcontry = res; console.log(this.DBcontry)});
+    var Miurl = `https://restcountries.com/v3.1/alpha/${id}`;
+    this.servicehttp.get(Miurl).subscribe(res => {this.DBcontry = res;});
   }
   goBack(){
     this.servicehttp.set_color(this.tema);
-    this.location.back();
-
-  }
+ }
 
 }
+
