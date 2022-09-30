@@ -31,7 +31,7 @@
     <div class="row container" style="margin-top: 3%; ">
         <div *ngFor="let contry of DBcontry" class="container col-lg-3 col-md-4 col-xs-12 "  >
             <div class="card shadow item-center" style="margin-top: 10%; margin-left: 3%; width: 100%; "[ngStyle]="tema">
-                <img loading="lazy" src={{contry.flag}} height="135px" width="100%" (click)="micolor()" [routerLink]="['/','post',contry.cca3]"
+                <img src={{contry.flag}} height="135px" width="100%" (click)="micolor()" [routerLink]="['/','post',contry.cca3]"
                     style="cursor: pointer;">
                 <div class="container row" style="margin-bottom: 5%;">
                     <h5 class="col-12">{{contry.name}}</h5>
